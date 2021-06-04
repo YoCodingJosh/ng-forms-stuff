@@ -3,7 +3,10 @@
   <form #form="ngForm" ngNativeValidate>
     <div class="mb-3">
       <label for="name">Name</label>
-      <input id="name" name="name" class="form-control" [(ngModel)]="userSettings.name" required ngModel>
+      <input id="name" name="name" class="form-control" [(ngModel)]="userSettings.name" required #nameField="ngModel" ngModel>
+      <div [hidden]="nameField.valid || nameField.untouched" class="alert alert-danger">
+        Please enter a name!
+      </div>
     </div>
 
     <div class="form-check mb-3">
