@@ -14,7 +14,7 @@ export class DataService {
     return this.http.post('https://putsreq.com/0dBUWsuVq9q2jR7RTXQG', userSettings);
   }
 
-  private putsReqResponse(request: any, response: any): any {
+  private putsreqResponseSuccess(request: any, response: any): any {
     var parsedBody = JSON.parse(request.body);
 
     parsedBody.id = Math.round(Math.random() * 1000);
@@ -23,5 +23,10 @@ export class DataService {
     response.headers["X-Powered-By"] = "wow much code very cool wow";
 
     response.body = parsedBody;
+  }
+
+  private putsreqResponseError(request: any, response: any): any {
+    response.code = 500;
+    response.body = { errorMessage: 'There was an internal server error. Please try again later.' };
   }
 }
